@@ -9,19 +9,7 @@ function WeatherAtm({current, location}) {
     const isoDate = hasData ? current.current_weather.time : null;
     const date = hasData ? formatISODate(isoDate) : null;
     const temp = hasData ? current.current_weather.temperature : null;
-
-
     const icon = hasData ? getWeatherIcon(current.current_weather.weathercode) : null;
-
-
-
-    // const rawTime = hasData ? current.current_weather.time : null
-    // const roundedTime = hasData ? rawTime.slice(0, 14) + "00" : null
-    // const times = hasData ? current.hourly.time : null
-    // const index = hasData ? times.findIndex((t) => t === roundedTime) -1 : null
-    // const humidity = hasData ? current.hourly.relative_humidity_2m[index] : null
-    // const feelsLike = hasData ? current.hourly.apparent_temperature[index] : null
-
 
     return (
         <>

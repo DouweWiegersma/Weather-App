@@ -12,7 +12,6 @@ function PerceivedClimate({current}){
     const humidity = hasData ? current.hourly.relative_humidity_2m[index] : null
     const humidityUnit = hasData ? current.hourly_units.relative_humidity_2m : null
     const feelsLike = hasData ? current.hourly.apparent_temperature[index] : null
-    // const feelsLikeUnit = hasData ? current.hourly_units.apparent_temperature : null
     const precipitation = hasData ? current.hourly.precipitation[index] : null
     const wind = hasData ? current.current_weather.windspeed : null
 

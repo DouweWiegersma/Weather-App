@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { FaSearch } from 'react-icons/fa';
+
     function SearchBar({onSearch}) {
         const [city, setCity] = useState('');
 

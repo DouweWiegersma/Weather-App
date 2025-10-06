@@ -41,8 +41,6 @@ function HourlyForecast({ current }) {
         <div className='bg-gray-600 p-4 rounded-2xl m-4'>
             <div className='flex justify-evenly text-white text-lg font-bold'>
             <h1>Hourly Forecast</h1>
-
-            {/* Select input voor de dagen */}
             <select className='bg-gray-600 w-28' value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
                 <option className='bg-gray-600' value="">day</option>
                 {days.map((day) => (
@@ -53,7 +51,6 @@ function HourlyForecast({ current }) {
             </select>
             </div>
 
-            {/* Toon de data voor de geselecteerde dag */}
             {dayData.length > 0 && (
                 <div>
                     {dayData.map((item, i) => (

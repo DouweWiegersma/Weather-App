@@ -1,15 +1,14 @@
 import { createContext, useContext, useState } from "react";
 
-// Context aanmaken
 const UnitsContext = createContext();
 
-// Provider
+
 export function UnitsProvider({ children }) {
     const [tempUnit, setTempUnit] = useState("C");
     const [windUnit, setWindUnit] = useState("km/h")
     const [precipitationUnits, setPrecipitationUnits] = useState("mm")
     const [units, toggleUnits] = useState(false)
-    // Toggle functie
+
     function toggleUnit() {
         setTempUnit((prev) => (prev === "C" ? "F" : "C"));
         setWindUnit((prev) => (prev === "km/h" ? "mp/h" : "km/h"));
