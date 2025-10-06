@@ -16,12 +16,12 @@ function WeatherAtm({current, location}) {
 
             {hasData ? (
                 <div
-                    className='m-5 max-h-full min-h-80 bg-no-repeat bg-cover bg-center rounded-2xl p-6 text-white flex flex-col justify-evenly gap-4'
+                    className='m-5 max-h-96 min-h-80 bg-no-repeat bg-cover bg-center rounded-2xl p-6 text-white flex flex-col justify-evenly'
                     style={{backgroundImage: "url('/bg-today-large.svg')"}}>
                     <h2 className='text-2xl text-center font-bold mt-2'>{location?.name}, {location?.country}</h2>
                     <p className='text-lg text-center'>{date}</p>
                     <div className='flex flex-row justify-center align-middle'>
-                        <img src={icon} alt='weatherIcon' className='w-3/5'/>
+                        <img src={icon} alt='weatherIcon' className='w-36'/>
                         <div className='flex flex-col gap-4 align-middle justify-center'>
                             <p className='text-6xl'>{Math.round(convertTemp(temp, tempUnit))}°{tempUnit}</p>
                         </div>

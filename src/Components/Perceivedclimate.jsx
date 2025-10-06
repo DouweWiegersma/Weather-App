@@ -28,7 +28,7 @@ function PerceivedClimate({current}){
                     <p className='text-lg'>Feels like</p>
                     <p className='text-2xl'>{Math.round(convertTemp(feelsLike, tempUnit))}°{tempUnit}</p>
                 </div>
-                {/*precipitation_sum*/}
+
 
                 <div className='flex flex-col p-6 bg-gray-800 gap-2 rounded-2xl text-white'>
                     <p className='text-lg'>Precipitation </p>

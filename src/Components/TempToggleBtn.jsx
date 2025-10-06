@@ -40,8 +40,6 @@ export default function UnitsMenu() {
                         Fahrenheit (°F) {tempUnit === "F" && <Check className="w-4 h-4 z-20"/>}
                     </button>
 
-
-                    {/* Wind Speed */}
                     <p className="text-sm text-gray-400">Wind Speed</p>
                     <button
                         onClick={() => setWindSpeedUnit("km/h")}
