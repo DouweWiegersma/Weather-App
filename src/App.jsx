@@ -29,16 +29,17 @@ async function handleSubmit(cityName) {
         console.log(response.data.results[0])
     } catch (e) {
         console.error(e, 'Failed to get data!')
-        setError('Cant find any data')
+        setError('Cant find any data!')
         setLoading(false)
     }
 }
 
 
 useEffect(() => {
-
     if (!location) return;
+    const controller = new AbortController();
     async function current() {
+
         setLoading(true)
         try {
             const response = await axios.get('https://api.open-meteo.com/v1/forecast', {
@@ -51,20 +52,31 @@ useEffect(() => {
                     wind_speed_unit: "kmh",
                     timezone: "auto",
                     daily: ['temperature_2m_mean', 'apparent_temperature_mean', 'weather_code', 'apparent_temperature_min', 'apparent_temperature_max', 'precipitation_sum']
-                }
+                },
+                signal: controller.signal
             })
-            console.log(response.data)
             setCurrentWeather(response.data)
         } catch (e) {
             console.error(e, 'Failed to get data')
-            setError('cant find any data!')
+                setError('cant find any data!')
         }
         finally {
             setLoading(false)
         }
     }
     current()
+    return () => {
+        controller.abort();
+    };
 }, [location])
+
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => setError(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
+
     if (loading === true) {
         return (
             <div className="flex justify-center items-center h-screen bg-blue-950">
