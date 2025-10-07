@@ -11,10 +11,14 @@ import HourlyForecast from "./Components/HourlyForecast.jsx";
 
 function App() {
 
-const [location, setLocation] = useState([])
-const [currentWeather, setCurrentWeather] = useState([])
+const [location, setLocation] = useState(null)
+const [currentWeather, setCurrentWeather] = useState(null)
+const [error, setError] = useState(null)
+const [loading, setLoading] = useState(false)
 
 async function handleSubmit(cityName) {
+    setLoading(true)
+    setError(null)
     try {
         const response = await axios.get('https://geocoding-api.open-meteo.com/v1/search', {
             params: {
@@ -25,13 +29,17 @@ async function handleSubmit(cityName) {
         console.log(response.data.results[0])
     } catch (e) {
         console.error(e, 'Failed to get data!')
+        setError('Cant find any data')
+        setLoading(false)
     }
 }
 
 
 useEffect(() => {
-    if(!location) return;
+
+    if (!location) return;
     async function current() {
+        setLoading(true)
         try {
             const response = await axios.get('https://api.open-meteo.com/v1/forecast', {
                 params: {
@@ -42,19 +50,35 @@ useEffect(() => {
                     current_weather: true,
                     wind_speed_unit: "kmh",
                     timezone: "auto",
-                    daily: ['temperature_2m_mean', 'apparent_temperature_mean', 'weather_code', 'apparent_temperature_min' , 'apparent_temperature_max', 'precipitation_sum']
+                    daily: ['temperature_2m_mean', 'apparent_temperature_mean', 'weather_code', 'apparent_temperature_min', 'apparent_temperature_max', 'precipitation_sum']
                 }
             })
             console.log(response.data)
             setCurrentWeather(response.data)
         } catch (e) {
             console.error(e, 'Failed to get data')
+            setError('cant find any data!')
+        }
+        finally {
+            setLoading(false)
         }
     }
-
     current()
 }, [location])
-
+    if (loading === true) {
+        return (
+            <div className="flex justify-center items-center h-screen bg-blue-950">
+                <p className="text-blue-300 text-2xl animate-pulse">Loading...</p>
+            </div>
+        );
+    }
+    if (error) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <p className="text-red-950 text-2xl animate-pulse">{error}</p>
+            </div>
+        );
+    }
     return (
         <div className='bg-blue-950 w-screen min-h-screen pb-4'>
             <UnitBar current={currentWeather}/>
