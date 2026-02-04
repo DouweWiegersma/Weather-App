@@ -8,14 +8,14 @@
   "theme_color": "#4a90e2",
   "icons": [
     {
-      "src": "/20092.jpg",
+      "src": "/weattherIcon.png",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/png"
     },
     {
-      "src": "/20092.jpg",
+      "src": "/weattherIcon.png",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/png"
     }
   ]
 }
